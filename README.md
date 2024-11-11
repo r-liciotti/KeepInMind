@@ -36,8 +36,8 @@
 
 * Ricerca città
 * Storico Temperature
-* Dati inquinamento
- - CO2 - CO - NO2 - Polvere 
+* Dati inquinamento  
+	- CO2 - CO - NO2 - Polvere 
 * Responsive
 
 ## How To Use
