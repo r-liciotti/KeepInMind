@@ -80,5 +80,5 @@ This software uses the following open source packages:
 
 
 > GitHub [@r-liciotti](https://github.com/r-liciotti) &nbsp;&middot;&nbsp;
-> LinkedIn [@amit_merchant](www.linkedin.com/in/riccardo-liciotti-956401173)
+> LinkedIn [@Riccardo Liciotti](www.linkedin.com/in/riccardo-liciotti-956401173)
 
