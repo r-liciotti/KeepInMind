@@ -72,18 +72,24 @@ $ npm start
 
 This software uses the following open source packages:
 
-- [Electron](http://electron.atom.io/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
+- [@reduxjs/toolkit](https://redux-toolkit.js.org/) - Official, opinionated, batteries-included toolset for efficient Redux development
+- [@tanstack/react-query](https://tanstack.com/query/latest) - Powerful asynchronous state management for data fetching and caching in React
+- [flyonui](https://www.npmjs.com/package/flyonui) - UI components library for streamlined front-end development
+- [fuse.js](https://fusejs.io/) - Lightweight fuzzy-search library for easy and intuitive search functionality
+- [idb](https://www.npmjs.com/package/idb) - IndexedDB wrapper to simplify the use of the IndexedDB API
+- [openmeteo](https://www.npmjs.com/package/openmeteo) - API client for fetching weather data from Open-Meteo
+- [React](https://react.dev/) - Popular JavaScript library for building user interfaces
+- [React DOM](https://react.dev/) - DOM-specific methods for working with React in web browsers
+- [react-redux](https://react-redux.js.org/) - Official React bindings for Redux, allowing easy access to the Redux store
+- [react-responsive](https://www.npmjs.com/package/react-responsive) - Media query module for building responsive components in React
+- [react-router-dom](https://reactrouter.com/) - Declarative routing library for React applications
+- [recharts](https://recharts.org/en-US/) - Charting library built on React components for data visualization
+
 
 
 ---
 
-> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
-> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
-> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
+
+> GitHub [@r-liciotti](https://github.com/r-liciotti) &nbsp;&middot;&nbsp;
+> LinkedIn [@amit_merchant](www.linkedin.com/in/riccardo-liciotti-956401173)
 
