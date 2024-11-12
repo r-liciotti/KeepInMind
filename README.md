@@ -15,7 +15,7 @@
   <a href="#credits">Credits</a> •
 </p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+![screenshot](https://github.com/r-liciotti/KeepInMind/blob/main/public/screenshot/Immagine%202024-11-11%20114006.png)
 
 ## Key Features
 
@@ -28,6 +28,8 @@
 ## How To Use
 
 Go to [KeepInMind Site](https://keepinmind-rliciotti.netlify.app/) and start with search your city for show charts.
+
+![screenshot](https://github.com/r-liciotti/KeepInMind/blob/main/public/screenshot/rec1.gif)
 
 ## How To Clone
 
@@ -70,4 +72,4 @@ This software uses the following open source packages:
 ---
 
 > GitHub [@r-liciotti](https://github.com/r-liciotti) &nbsp;&middot;&nbsp;
-> LinkedIn [@amit_merchant](www.linkedin.com/in/riccardo-liciotti-956401173)
+> LinkedIn [@Riccardo Liciotti](www.linkedin.com/in/riccardo-liciotti-956401173)
