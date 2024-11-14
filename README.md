@@ -15,7 +15,7 @@
   <a href="#credits">Credits</a> •
 </p>
 
-![screenshot](https://github.com/r-liciotti/KeepInMind/blob/main/public/screenshot/Immagine%202024-11-11%20114006.png)
+![screenshot](https://github.com/r-liciotti/KeepInMind/blob/main/public/screenshot/screenHome.png)
 
 ## Key Features
 
