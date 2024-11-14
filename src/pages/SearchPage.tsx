@@ -15,14 +15,14 @@ export default function SearchPage() {
   const { searchParam } = useParams();
   const [typeData, setTypeData] = useState<"T" | "P">("T"); // Stato limitato a due stringhe
   const selectedState = useSelector(
-    (state: RootState) => state.stateSelection.selectedState
+    (state: RootState) => state.stateSelection.selectedState,
   );
 
   const [searchValue, setSearchValue] = useState<string>("");
 
   return (
-    <div className="searchPage  container md:max-w-4xl mx-auto flex flex-col gap-4 bg-base-100 px-4 ">
-      <h1 className="text-base-content text-4xl font-semibold capitalize p-1 mt-2 ">
+    <div className="searchPage container mx-auto flex flex-col gap-4 bg-base-100 px-4 md:max-w-4xl">
+      <h1 className="mt-2 p-1 text-4xl font-semibold capitalize text-base-content">
         {searchParam}
       </h1>
       {!useIsMobile() && (
@@ -32,7 +32,7 @@ export default function SearchPage() {
         />
       )}
       <RadioCard
-        titles={["Storico Temperature", "Pollution"]}
+        titles={["Storico Temperature", "Inquinamento"]}
         descriptions={[
           "Storico Dati delle Temperature",
           "Dati sull'Inquinamento (PM10-PM2.3-NO2-CO2-Polveri)",

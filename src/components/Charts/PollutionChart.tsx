@@ -18,6 +18,7 @@ import getPollutionData from "../../services/getPollutionData";
 import { format } from "date-fns";
 import AirQuality from "./AirQuality";
 import { SpinnerLoader } from "../Loader/SpinnerLoader";
+import useIsMobile from "../../mediaqueries/useIsMobile";
 
 interface PollutionChartProps {
   state: State;
@@ -35,8 +36,10 @@ interface PollutionDataEntry {
 }
 
 const PollutionChart: React.FC<PollutionChartProps> = ({ state }) => {
+  const isMobile = useIsMobile();
+
   const pollutionStorageKey = useSelector(
-    (state: RootState) => state.stateSelection.PollutionStorageKey
+    (state: RootState) => state.stateSelection.PollutionStorageKey,
   );
 
   const [visibleLines, setVisibleLines] = useState({
@@ -65,7 +68,7 @@ const PollutionChart: React.FC<PollutionChartProps> = ({ state }) => {
       getPollutionData(
         pollutionStorageKey,
         state.latitudeNumber,
-        state.longitudeNumber
+        state.longitudeNumber,
       ),
   });
 
@@ -76,10 +79,11 @@ const PollutionChart: React.FC<PollutionChartProps> = ({ state }) => {
   const latestEntry = data.reduce(
     (latest, entry) =>
       new Date(entry.time) > new Date(latest.time) ? entry : latest,
-    data[0]
+    data[0],
   );
 
   const formatXAxis = (tick: Date) => format(tick, "dd/MM");
+  const fontSize = isMobile ? 12 : 14;
 
   const renderTooltip = (props: { active?: boolean; payload?: any }) => {
     if (props.active && props.payload && props.payload.length) {
@@ -97,12 +101,12 @@ const PollutionChart: React.FC<PollutionChartProps> = ({ state }) => {
           {props.payload.map(
             (
               entry: { color: string; name: string; value: number },
-              index: number
+              index: number,
             ) => (
               <p key={index} style={{ color: entry.color }}>
-                {`${entry.name}: ${entry.value}`}
+                {`${entry.name}: ${entry.value.toFixed(2)}`}
               </p>
-            )
+            ),
           )}
         </div>
       );
@@ -123,15 +127,16 @@ const PollutionChart: React.FC<PollutionChartProps> = ({ state }) => {
             <XAxis
               dataKey="time"
               tickFormatter={formatXAxis}
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: fontSize }}
             />
-            <YAxis yAxisId="left" unit="μg/m³" tick={{ fontSize: 10 }} />
+            <YAxis yAxisId="left" unit="μg/m³" tick={{ fontSize: fontSize }} />
             <YAxis
               yAxisId="right"
               unit="ppm"
               orientation="right"
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: fontSize }}
             />
+
             <Tooltip content={renderTooltip} />
             <Legend
               onClick={(e) =>

@@ -61,10 +61,10 @@ const GeocodingMap = ({ lat, long }: GeocodingMapProps) => {
     setPosition([0, 0]);
   }
   const selectedState = useSelector(
-    (state: RootState) => state.stateSelection.selectedState
+    (state: RootState) => state.stateSelection.selectedState,
   );
   const dispatch = useDispatch();
-  console.log("GeocodingMap", lat, long);
+  //console.log("GeocodingMap", lat, long);
 
   // Funzione ottimizzata per aggiornare la posizione con useCallback
   const updatePosition = useCallback((newPosition: [number, number]) => {

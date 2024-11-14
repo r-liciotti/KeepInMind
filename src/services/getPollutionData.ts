@@ -17,7 +17,7 @@ async function getPollutionData(storageKey: string,
         "forecast_days": 1
     };
 
-    console.log("PollutionStorageKey", storageKey);
+    // console.log("PollutionStorageKey", storageKey);
 
     const cachedData = await getData(storageKey);
 
@@ -28,7 +28,7 @@ async function getPollutionData(storageKey: string,
             now.getTime() - lastFetched.getTime() < 24 * 60 * 60 * 1000;
 
         if (isDataRecent) {
-            console.log("Dati recuperati da IndexedDB:", cachedData.data.data);
+            //  console.log("Dati recuperati da IndexedDB:", cachedData.data.data);
             return cachedData.data.data;
         }
     }
@@ -74,7 +74,7 @@ async function getPollutionData(storageKey: string,
         timestamp: new Date().toISOString(),
     });
 
-    console.log("Salvato");
+    // console.log("Salvato");
     return dataOutput;
 }
 

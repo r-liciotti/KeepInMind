@@ -6,12 +6,10 @@ interface TemperatureData {
 
 async function calculateTemperatureIncrease(
     storageKey: string,
-    yearsToAverage: number
+    yearsToAverage: number // Giorni da prendere in considerazione
 ): Promise<{ increase: number | null; percentageIncrease: number | null }> {
-    console.log("storageKey", storageKey);
 
     const cachedData = await getData(storageKey);
-    console.log("cachedData", cachedData);
 
     if (!cachedData) {
         console.error("Dati non disponibili in IndexedDB.");
@@ -20,7 +18,7 @@ async function calculateTemperatureIncrease(
 
     try {
         const data: TemperatureData[] = cachedData.data.data; // Estrarre i dati dal campo data
-
+        yearsToAverage = yearsToAverage * 365;
         // Verifica se ci sono abbastanza dati per il calcolo
         if (data.length < yearsToAverage * 2) {
             console.error("Non ci sono abbastanza dati per il calcolo.");
@@ -31,12 +29,14 @@ async function calculateTemperatureIncrease(
         const startPeriod = data.slice(0, yearsToAverage);
         const endPeriod = data.slice(-yearsToAverage);
 
+
         const averageTempStart =
             startPeriod.reduce((sum, entry) => sum + entry.temperature2mMean, 0) /
             startPeriod.length;
         const averageTempEnd =
             endPeriod.reduce((sum, entry) => sum + entry.temperature2mMean, 0) /
             endPeriod.length;
+
 
         // Calcola incremento assoluto e percentuale
         const increase = averageTempEnd - averageTempStart;

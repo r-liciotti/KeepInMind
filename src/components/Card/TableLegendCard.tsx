@@ -1,19 +1,19 @@
 function TableLegendCard() {
   return (
-    <div className="w-full  overflow-x-auto h-fit rounded-box bg-gradient-to-br to-primary/10 from-base-100/10   p-6  ring-1 ring-primary/20  ">
-      <h2 className="text-2xl font-bold mb-5 text-primary">
+    <div className="h-fit w-full overflow-x-auto rounded-box bg-gradient-to-br from-base-100/10 to-primary/10 p-6 ring-1 ring-primary/20">
+      <h2 className="mb-5 text-2xl font-bold text-primary">
         Scala dell'indice della qualità dell'aria e legenda dei colori
       </h2>
 
-      <div className=" overflow-x-auto rounded-lg border border-base-content/25">
-        <table className="table  ">
-          <thead className="">
+      <div className="overflow-x-auto rounded-lg border border-base-content/25">
+        <table className="table">
+          <thead>
             <tr>
               <th className="font-bold text-black">AQI</th>
-              <th className="font-bold text-black text-wrap">
+              <th className="text-wrap font-bold text-black">
                 Livello di inquinamento atmosferico
               </th>
-              <th className="font-bold text-black text-wrap">
+              <th className="text-wrap font-bold text-black">
                 Implicazioni sulla salute
               </th>
             </tr>
@@ -22,7 +22,7 @@ function TableLegendCard() {
             <tr className="bg-[#00af00]">
               <td>0 - 50</td>
               <td>Buono</td>
-              <td className="text-wrap ">
+              <td className="text-wrap">
                 L’inquinamento atmosferico presenta rischi minimi o nulli.
               </td>
             </tr>

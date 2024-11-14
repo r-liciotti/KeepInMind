@@ -11,16 +11,16 @@ async function getHistoricalTemperatures(
   const params = {
     latitude: _lat,
     longitude: _long,
-    start_date: "1950-09-20",
-    end_date: "2024-09-30",
+    start_date: "1940-01-01",
+    end_date: "2024-11-10",
     daily: ["temperature_2m_max", "temperature_2m_min", "temperature_2m_mean"],
     timezone: "Europe/London",
   };
 
   // Recupera i dati dalla cache IndexedDB
   const cachedData = await getData(storageKey);
-  console.log("cachedData", cachedData);
-  console.log("desiredLength ", desiredLength);
+  //console.log("cachedData", cachedData);
+  //console.log("desiredLength ", desiredLength);
 
 
 
@@ -35,11 +35,11 @@ async function getHistoricalTemperatures(
       now.getTime() - lastFetched.getTime() < 24 * 60 * 60 * 1000;
 
     if (isDataRecent) {
-      console.log("Dati recuperati da IndexedDB:", cachedData.data);
+      //console.log("Dati recuperati da IndexedDB:", cachedData.data);
       return adjustDataLength(cachedData.data.data, desiredLength);
     }
   }
-  console.log("Non ci sono dati nella cache, li ricarichiamo dall'API");
+  //console.log("Non ci sono dati nella cache, li ricarichiamo dall'API");
 
   const url = "https://archive-api.open-meteo.com/v1/archive";
   const responses = await fetchWeatherApi(url, params);
@@ -65,15 +65,15 @@ async function getHistoricalTemperatures(
   };
 
   const dataOutput = transformWeatherData(weatherData.daily);
-  console.log("Dati recuperati dall'API:", dataOutput);
-  console.log("storageKey", storageKey);
+  //console.log("Dati recuperati dall'API:", dataOutput);
+  //console.log("storageKey", storageKey);
 
   // Salva i dati in IndexedDB
   await saveData(storageKey, {
     data: dataOutput,
     timestamp: new Date().toISOString(),
   });
-  console.log("Salvato");
+  //console.log("Salvato");
   return adjustDataLength(dataOutput, desiredLength);
 }
 
@@ -97,8 +97,7 @@ function adjustDataLength(
   desiredLength: number
 ): WeatherDayData[] {
   const dataLength = data.length;
-  console.log("data", data);
-  console.log(typeof data);
+
 
 
   if (dataLength <= desiredLength) {
@@ -120,7 +119,6 @@ function adjustDataLength(
     const averageData = calculateAverage(subset);
     result.push(averageData);
   }
-  console.log("Dati aggregati:", result);
 
   return result;
 }

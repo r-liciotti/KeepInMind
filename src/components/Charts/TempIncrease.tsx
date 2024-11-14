@@ -21,19 +21,19 @@ function TempIncrease({ storageKey }: TempIncreaseProps) {
   }
 
   return (
-    <div className="flex flex-col w-1/2 gap-2 border-2 rounded-xl p-2 bg-base-100 border-base-content/20">
+    <div className="flex w-1/2 flex-col gap-2 rounded-xl border-2 border-base-content/20 bg-base-100 p-2">
       {data.increase !== null && data.percentageIncrease !== null ? (
         <>
           <div>
             <h2 className="text-2xl">Aumento di:</h2>
           </div>
-          <div className=" text-2xl font-bold text-center">
+          <div className="text-center text-4xl font-bold">
             <div>
               {data.increase >= 0 ? "+" : ""}
               {data.increase.toFixed(2)}°C
             </div>
 
-            <div>{data.percentageIncrease.toFixed(2)}%</div>
+            {/* <div>{data.percentageIncrease.toFixed(2)}%</div> */}
           </div>
         </>
       ) : (

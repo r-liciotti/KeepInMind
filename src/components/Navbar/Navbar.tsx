@@ -6,8 +6,9 @@ export default function Navbar() {
   const [touch, setTouch] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const navigate = useNavigate();
-  const liRef1 = useRef<HTMLLIElement>(null);
-  const liRef2 = useRef<HTMLLIElement>(null);
+  const liRefThemeController = useRef<HTMLLIElement>(null);
+  const liRefInfoPage = useRef<HTMLLIElement>(null);
+  const liRefHomeAndSearch = useRef<HTMLLIElement>(null);
 
   const handleInfoClick = () => {
     setSearchValue("");
@@ -29,10 +30,12 @@ export default function Navbar() {
       const target = event.target as Node | null;
 
       if (
-        liRef1.current &&
-        !liRef1.current.contains(target) &&
-        liRef2.current &&
-        !liRef2.current.contains(target)
+        liRefThemeController.current &&
+        !liRefThemeController.current.contains(target) &&
+        liRefInfoPage.current &&
+        !liRefInfoPage.current.contains(target) &&
+        liRefHomeAndSearch.current &&
+        !liRefHomeAndSearch.current.contains(target)
       ) {
         setTouch(false);
       }
@@ -46,28 +49,47 @@ export default function Navbar() {
   }, []);
 
   return (
-    <ul className="flex flex-col items-start fixed bottom-3 z-50 left-1/2 transform -translate-x-1/2 gap-3 w-[calc(100vw-1.5rem)] p-1">
+    <ul className="fixed bottom-3 left-1/2 z-50 flex w-[calc(100vw-1.5rem)] -translate-x-1/2 transform flex-col items-start gap-3 p-1">
       <li
-        ref={liRef1}
+        ref={liRefThemeController}
+        className={`ml-2 transform transition-all duration-500 ease-out ${
+          touch ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
+      >
+        <label className="btn swap swap-rotate h-11 w-11 rounded-xl p-2">
+          <input
+            type="checkbox"
+            defaultValue="dark"
+            className="theme-controller"
+          />
+          <span className="icon-[tabler--sun] swap-off size-7" />
+          <span className="icon-[tabler--moon] swap-on size-7" />
+        </label>
+      </li>
+
+      <li
+        ref={liRefInfoPage}
         className={`ml-2 transform transition-all duration-500 ease-out ${
           touch ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <button
-          className="btn rounded-xl w-11 h-11 p-2"
+          className="btn h-11 w-11 rounded-xl p-2"
           onClick={handleInfoClick}
         >
-          <span className="icon-[solar--question-circle-linear] w-full h-full"></span>
+          <span className="icon-[solar--question-circle-linear] h-full w-full">
+            info
+          </span>
         </button>
       </li>
 
-      <li ref={liRef2} className="flex gap-4 items-center w-full">
+      <li ref={liRefHomeAndSearch} className="flex w-full items-center gap-4">
         <button
-          className="btn rounded-2xl w-15 h-15 p-2"
+          className="btn h-15 w-15 rounded-2xl p-2"
           onClick={handleHomeClick}
         >
           <span
-            className={`w-full h-full ${
+            className={`h-full w-full ${
               touch
                 ? "icon-[solar--home-angle-linear]"
                 : "icon-[lets-icons--search-alt]"

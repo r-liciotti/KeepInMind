@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   LineChart,
   CartesianGrid,
@@ -7,31 +8,35 @@ import {
   Line,
   Tooltip,
   ResponsiveContainer,
+  TooltipProps,
 } from "recharts";
 import getHistoricalTemperatures from "../../services/getHistoricalTemperatures";
-import { useState } from "react";
-import Counter from "./Counter";
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import TempIncrease from "./TempIncrease";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import ErrorComponent from "../Error/ErrorComponent";
+import Counter from "./Counter";
+import TempIncrease from "./TempIncrease";
 import { State } from "../../interfaces/Country";
 import { format } from "date-fns";
 import { SpinnerLoader } from "../Loader/SpinnerLoader";
+import {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
+import useIsMobile from "../../mediaqueries/useIsMobile";
 
 interface TemperatureChartProps {
   state: State;
 }
+
 function TemperatureChart({ state }: TemperatureChartProps) {
   const [lungArray, setLungArray] = useState(5);
+  const isMobile = useIsMobile();
 
   const WeatherStorageKey = useSelector(
-    (state: RootState) => state.stateSelection.WeatherStorageKey
+    (state: RootState) => state.stateSelection.WeatherStorageKey,
   );
-
-  console.log("TemperatureChart Compontent", WeatherStorageKey);
 
   const { data, isError, isLoading, error } = useQuery({
     queryKey: [
@@ -46,15 +51,36 @@ function TemperatureChart({ state }: TemperatureChartProps) {
         WeatherStorageKey,
         state.latitudeNumber,
         state.longitudeNumber,
-        lungArray
+        lungArray,
       ),
-    enabled: !!lungArray, // La query si attiva quando lungArray è valido (non nullo)
+    enabled: !!lungArray,
   });
 
   if (isLoading) return <SpinnerLoader />;
   if (isError) return <ErrorComponent error={error} />;
 
   const formatXAxis = (tickItem: Date) => format(tickItem, "dd/MM/yyyy");
+  const fontSize = isMobile ? 12 : 14;
+  // Custom Tooltip for rounding values to 2 decimal places
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: TooltipProps<ValueType, NameType>) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip rounded bg-white p-2 shadow-md">
+          <p className="label">{`Data: ${formatXAxis(new Date(label))}`}</p>
+          {payload.map((item, index) => (
+            <p key={index} style={{ color: item.stroke }}>
+              {`${item.name}: ${(item.value as number).toFixed(2)}°C`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <React.Fragment>
@@ -76,16 +102,24 @@ function TemperatureChart({ state }: TemperatureChartProps) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="time"
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: fontSize }}
               tickFormatter={formatXAxis}
             />
             <YAxis unit={"°C"} />
-            <Tooltip />
+            <Tooltip
+              content={({ active, payload, label }) => (
+                <CustomTooltip
+                  active={active}
+                  payload={payload}
+                  label={label}
+                />
+              )}
+            />
             <Legend />
             <Line
               type="monotone"
               dataKey="temperature2mMean"
-              name="Mean"
+              name="Media"
               stroke="#fe6a35"
             />
             <Line

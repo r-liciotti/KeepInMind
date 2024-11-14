@@ -21,7 +21,8 @@ function ComboBox({ searchValue, setSearchValue, showOnTouch }: ComboBoxProps) {
   const handleSearchClick = () => {
     if (!searchValue) return;
     const selectedOption = options.find(
-      (option: State) => option.name.toLowerCase() === searchValue.toLowerCase() // Ignora maiuscole/minuscole
+      (option: State) =>
+        option.name.toLowerCase() === searchValue.toLowerCase(), // Ignora maiuscole/minuscole
     );
     if (selectedOption) {
       dispatch(setSelectedState(selectedOption));
@@ -49,19 +50,19 @@ function ComboBox({ searchValue, setSearchValue, showOnTouch }: ComboBoxProps) {
 
   return (
     <div
-      className={`form-control w-full join max-w-sm md:max-w-lg transform transition-all duration-500 ease-out ${
+      className={`form-control join w-full max-w-sm transform transition-all duration-500 ease-out md:max-w-lg ${
         showOnTouch ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
       }`}
     >
       {isOpen && (
         <div
           id="comboBox"
-          className="flex flex-col absolute bottom-15 z-10 bg-base-100 vertical-scrollbar rounded-scrollbar rounded-box max-h-44 w-full space-y-0.5 p-3 shadow-lg"
+          className="vertical-scrollbar rounded-scrollbar absolute bottom-15 z-10 flex max-h-44 w-full flex-col space-y-0.5 rounded-box bg-base-100 p-3 shadow-lg"
         >
           {options.map((option, index) => (
             <div
               key={index}
-              className="flex rounded-lg bg-base-100 active:bg-base-200 p-2 text-sm cursor-pointer"
+              className="flex cursor-pointer rounded-lg bg-base-100 p-2 text-sm active:bg-base-200"
               onClick={() => {
                 setSearchValue(option.name);
                 setIsOpen(false);
@@ -75,15 +76,15 @@ function ComboBox({ searchValue, setSearchValue, showOnTouch }: ComboBoxProps) {
       <input
         type="text"
         placeholder="Cerca"
-        className="input input-lg rounded-2xl grow w-full p-2 join-item"
+        className="input input-lg join-item w-full grow rounded-2xl p-2"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
       <button
-        className="btn btn-lg rounded-2xl border-base-content/40 join-item bg-base-200 px-3 md:px-5"
+        className="btn join-item btn-lg rounded-2xl border-base-content/40 bg-base-200 px-3 md:px-5"
         onClick={handleSearchClick}
       >
-        <span className="icon-[lets-icons--search-alt] text-3xl bg-black/75"></span>
+        <span className="icon-[lets-icons--search-alt] bg-base-content/75 text-3xl"></span>
       </button>
     </div>
   );

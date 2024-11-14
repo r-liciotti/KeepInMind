@@ -3,17 +3,25 @@ import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto md:max-w-5xl  px-4 py-8">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl bg-gradient-to-r from-primary to-error bg-clip-text text-transparent font-black  mb-4">
-          KeepInMind
-        </h1>
-        <p className="text-xl text-gray-500 dark:text-gray-400 font-medium">
+    <div className="container mx-auto px-4 py-8 md:max-w-5xl">
+      <header className="mb-8 text-center">
+        <div className="mb-1 flex items-center justify-center gap-4">
+          <div className="avatar pb-2">
+            <div className="size-16 rounded-full md:size-20">
+              <img src="/logo.png" alt="avatar" />
+            </div>
+          </div>
+          <h1 className="mb-4 bg-gradient-to-r from-primary to-error bg-clip-text text-4xl font-black text-transparent md:text-5xl">
+            KeepInMind
+          </h1>
+        </div>
+
+        <p className="text-xl font-medium text-gray-500 dark:text-gray-400">
           Benvenuti su KeepInMind
         </p>
       </header>
 
-      <main className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-12">
+      <main className="space-y-6 md:grid md:grid-cols-2 md:gap-12 md:space-y-0">
         <TextCard
           title="La Nostra Missione"
           description="KeepInMind nasce con l'obiettivo di rendere visibile ciò che troppo spesso resta invisibile: i cambiamenti climatici e la qualità dell'aria che respiriamo."
@@ -45,9 +53,9 @@ export default function HomePage() {
               alla discussione sul cambiamento climatico e fare un passo
               concreto verso la protezione dell'ambiente."
         />
-        <div className="hidden md:flex items-center justify-center col-span-2  ">
+        <div className="col-span-2 hidden items-center justify-center md:flex">
           <Link to={"/search"}>
-            <button className="btn btn-lg btn-wide  btn-gradient btn-primary waves waves-light h-14">
+            <button className="waves waves-light btn btn-primary btn-gradient btn-lg btn-wide h-14">
               Cerca la tua Città
             </button>
           </Link>

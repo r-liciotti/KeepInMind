@@ -7,7 +7,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -45,4 +44,14 @@ body {
   justify-content: flex-start;
 
   flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .table thead th {
+    padding: 3px 5px;
+    font-size: 12px;
+  }
+  .table tbody td {
+    font-size: 14px;
+  }
 }
