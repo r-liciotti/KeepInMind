@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://keepinmind-rliciotti.netlify.app/"><img src="https://github.com/r-liciotti/KeepInMind/blob/main/public/BrainTree.png" alt="KeepInMind" width="200"></a>
+  <a href="https://keepinmind-rliciotti.netlify.app/"><img src="https://github.com/r-liciotti/KeepInMind/blob/main/public/logo.png" alt="KeepInMind" width="200"></a>
   <br>
   KeepInMind
   <br>
