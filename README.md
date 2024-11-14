@@ -24,6 +24,7 @@
 - Dati inquinamento
   - CO2 - CO - NO2 - Polvere
 - Responsive
+- Dark Mode
 
 ## How To Use
 
